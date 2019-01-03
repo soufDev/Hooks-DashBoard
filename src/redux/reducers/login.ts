@@ -15,7 +15,6 @@ const login = (state=initialState.login, actions: any) => {
       return {
         ...state,
         isLoad: actions.isLoad,
-        path: actions.path,
       }
     case LOGIN_ERROR:
       return {

@@ -34,6 +34,7 @@
     "typescript": "3.2.2"
   },
   "scripts": {
+    "install-all": "yarn install && cd mock-backend && yarn install",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

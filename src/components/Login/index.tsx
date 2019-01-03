@@ -49,9 +49,8 @@ function Login(props: RouteComponentProps<{ history?: string }>) {
   const mapState = useCallback((state: any) => ({
     error: state.login.error,
     isLoad: state.login.isLoad,
-    path: state.login.path
   }),[]);
-  const { error, isLoad, path } = useMappedState(mapState);
+  const { error, isLoad } = useMappedState(mapState);
   // create actions
   const dispatch = useDispatch();
   const handleSubmit = useCallback(
@@ -61,15 +60,12 @@ function Login(props: RouteComponentProps<{ history?: string }>) {
           dispatch({ type: 'LOGIN_REQUEST', data: {
             username: username.value,
             password: password.value
-          }});
+          }, history: props.history});
         } catch (e) {
           console.log({ e });
         }
       }
     },[username.value, password.value]);
-  if(isLoad) {
-    props.history.push(path);
-  }
   return ( 
     <Form>
       <img src={logo} style={{ width: 250 }} />

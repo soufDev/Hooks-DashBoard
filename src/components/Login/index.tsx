@@ -1,8 +1,7 @@
 import React, { useState, FormEvent, useCallback } from 'react';
 import { Form, Input, Button, FormInput, ErrorMessage } from '../../styledComponents';
 import logo from './logo.svg';
-import { RouteProps, RouteComponentProps } from 'react-router';
-import AuthService from '../../Auth';
+import { RouteComponentProps } from 'react-router';
 
 import { useDispatch, useMappedState } from 'redux-react-hook';
 

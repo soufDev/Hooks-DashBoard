@@ -3,7 +3,7 @@ import jwt, { verify } from 'jsonwebtoken';
 
 interface Payload {
   username: string,
-  profile: string,
+  role: string,
 }
 const publicKey = fs.readFileSync('./public.pem', 'utf8');
 const privateKey = fs.readFileSync('./private.pem', 'utf8');

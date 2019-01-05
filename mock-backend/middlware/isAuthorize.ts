@@ -6,7 +6,7 @@ export const isAuthorize = (request: Request, response: Response, next: NextFunc
   const authorization = headers['authorization']
   if (authorization) {
     const authorizationSplited = authorization.split(' ');
-    if (authorizationSplited.length === 2 && authorizationSplited[0] === 'Barear') {
+    if (authorizationSplited.length === 2 && authorizationSplited[0] === 'Bearer') {
       try {
         const decoded = verifyToken(authorizationSplited[1]);
         if (decoded) {

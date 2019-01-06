@@ -7,8 +7,6 @@ import { ContentTable, Table, Th } from "../../styledComponents";
 import { Order } from "../../interface/Order";
 import { State } from "../../interface/GlobalState";
 import Assignee from "../Assignee/inedex";
-import { Link } from 'react-router-dom';
-
 
 const mapState = (state: State) => ({
   isLoad: state.order.isLoad,
@@ -44,7 +42,14 @@ function Orders(props: RouteComponentProps<{ history?: string; }>) {
               <td>{order.destination}</td>
               <td><Assignee id={order.assignee}/></td>
               <td>{order.status}</td>
-              <td><Link to={`/order/${order.id}`}>Edit</Link></td>
+              <td>
+                <button
+                  disabled={order.status === 'DELIVERED'} 
+                  onClick={() => history.push(`/order/edit/${order.assignee}`)}
+                >
+                  Edit
+                </button>
+              </td>
             </tr>
           ))}
         </tbody> 

@@ -4,12 +4,13 @@ import { updateParcelRequest, updateParcelSuccess, updateParcelError, updateOrde
 import { UPDATE_PARCEL, UPDATE_ORDER } from "../../../const";
 
 function* updateParcel(action: any) {
-  const { path, data } = action;
+  const { path, data, history } = action;
   yield put(updateParcelRequest());
   
   try {
     const response = yield call(updateParcelApi, path, data);
     yield put(updateParcelSuccess(response));
+    yield history.push('/orders');
   } catch (error) {
     yield put(updateParcelError(error));
   }
@@ -20,12 +21,13 @@ export function* watchUpdateParcel() {
 }
 
 function* updateOrder(action: any) {
-  const { path, data } = action;
+  const { path, data, history } = action;
   yield put(updateOrderRequest());
   
   try {
     const response = yield call(updateOrderApi, path, data);
     yield put(updateOrderSuccess(response));
+    yield history.push('/orders');
   } catch (error) {
     yield put(updateOrderError(error));
   }

@@ -13,7 +13,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 // using Lazy to import the component with lazy loading mode
 const Home = lazy(() => import('./components/Home'));
 const Orders = lazy(() => import('./components/Orders'));
-const OrderEdit = lazy(() => import('./components/Parcels/Edit'));
+const ParcelEdit = lazy(() => import('./components/Parcels/Edit'));
+const OrderEdit = lazy(() => import('./components/Orders/Edit'));
 
 const Login = lazy(() => import('./components/Login'));
 function MyFallbackComponent({ componentStack, error }: FallbackProps) {
@@ -38,7 +39,8 @@ class App extends Component {
                 <>
                   <LoginRoute path='/' exact component={Login} />
                   <ProtectedRoute path='/orders' component={Orders} />
-                  <ProtectedRoute path='/parcel/edit/:id' component={OrderEdit} />
+                  <ProtectedRoute path='/parcel/edit/:id' component={ParcelEdit} />
+                  <ProtectedRoute path='/order/edit/:id' component={OrderEdit} />
                   <ProtectedRoute path='/home' component={Home} />
                 </>           
             </Suspense>

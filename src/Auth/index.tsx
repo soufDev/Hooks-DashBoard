@@ -63,10 +63,6 @@ class AuthService {
     if (this.loggedIn()) {
       headers['Authorization'] = 'Bearer ' + this.getToken()
     }
-    console.log({
-      headers,
-      ...options
-    });
     return fetch(url, {
       headers,
       ...options

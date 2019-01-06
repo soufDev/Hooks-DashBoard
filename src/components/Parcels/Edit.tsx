@@ -32,17 +32,17 @@ function Edit(props: RouteComponentProps<{ id: string }>) {
         delivered_at: 0,
       }
       // dispatch call api with timestamps
-      dispatch(updateParcel(path, data))
+      dispatch(updateParcel(path, data, props.history))
     } else if (status === 'DELIVERED') {
       const data = {
         status,
         delivered_at: Date.now(),
       }
-      dispatch(updateParcel(path, data));
+      dispatch(updateParcel(path, data, props.history));
     } else {
       const data = { status }
       // dispatch call api without timestamps
-      dispatch(updateParcel(path, data));
+      dispatch(updateParcel(path, data, props.history));
     }
   }
   if (error) throw error;

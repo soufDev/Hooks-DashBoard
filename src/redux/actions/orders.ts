@@ -1,5 +1,6 @@
 import { FETCH_ORDERS_REQUEST, FETCH_ORDERS_ERROR, FETCH_ORDERS, FETCH_ORDERS_SUCCESS, UPDATE_PARCEL, UPDATE_PARCEL_REQUEST, UPDATE_PARCEL_SUCCESS, UPDATE_PARCEL_ERROR, UPDATE_ORDER, UPDATE_ORDER_REQUEST, UPDATE_ORDER_SUCCESS, UPDATE_ORDER_ERROR } from "../../const";
 import { ParcelUpdate } from "../../api/order";
+import { History } from 'history';
 
 export const fetchOrders = (path: string) => ({
   path,
@@ -22,9 +23,10 @@ export const fetchOrdersSuccess = (orders: any[]) => ({
   type: FETCH_ORDERS_SUCCESS,
 });
 
-export const updateParcel = (path: string, data: ParcelUpdate) => ({
+export const updateParcel = (path: string, data: ParcelUpdate, history: History) => ({
   path,
   data,
+  history,
   type: UPDATE_PARCEL,
 });
 
@@ -45,9 +47,10 @@ export const updateParcelError = (error: string) => ({
   type: UPDATE_PARCEL_ERROR,
 })
 
-export const updateOrder = (path: string, data: { assignee: number }) => ({
+export const updateOrder = (path: string, data: { assignee: number }, history: History) => ({
   path,
   data,
+  history,
   type: UPDATE_ORDER,
 });
 

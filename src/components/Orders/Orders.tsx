@@ -1,0 +1,56 @@
+import React from 'react';
+import { withRouter, RouteComponentProps } from "react-router";
+import { useMappedState, useDispatch } from "redux-react-hook";
+import { useEffect } from "react";
+import { FETCH_ORDERS, FETCH_USERS } from "../../const";
+import { ContentTable, Table, Th } from "../../styledComponents";
+import { Order } from "../../interface/Order";
+import { State } from "../../interface/GlobalState";
+import Assignee from "../Assignee/inedex";
+import { Link } from 'react-router-dom';
+
+
+const mapState = (state: State) => ({
+  isLoad: state.order.isLoad,
+  error: state.order.error,
+  orders: state.order.orders,
+})
+
+function Orders(props: RouteComponentProps<{ history?: string; }>) {
+  const { history } = props;
+  const { isLoad, error, orders } = useMappedState(mapState);
+  const dipatch = useDispatch();
+  useEffect(() => {
+    dipatch({ path: 'api/orders', type: FETCH_ORDERS });
+    dipatch({ path: 'api/users', type: FETCH_USERS });
+  }, []);
+  if (error) throw error;
+  return (
+    <ContentTable>
+      {isLoad && <h1>Loading ...</h1> || <Table>
+        <tbody>
+          <tr>
+            <Th>id</Th>
+            <Th>Origin</Th>
+            <Th>Destination</Th>
+            <Th>Assignee</Th>
+            <Th>Status</Th>
+            <Th />
+          </tr>
+          {orders && orders.map((order: Order, index: number) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{order.origin}</td>
+              <td>{order.destination}</td>
+              <td><Assignee id={order.assignee}/></td>
+              <td>{order.status}</td>
+              <td><Link to={`/order/${order.id}`}>Edit</Link></td>
+            </tr>
+          ))}
+        </tbody> 
+      </Table>}
+    </ContentTable>
+  )
+}
+
+export default withRouter(Orders);

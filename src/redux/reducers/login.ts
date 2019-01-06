@@ -11,10 +11,10 @@ const login = (state=initialState.login, actions: any) => {
         isLoad: actions.isLoad,
       };
     case LOGIN_SUCCESS:
-      console.log(actions);
       return {
         ...state,
         isLoad: actions.isLoad,
+        error: null,
       }
     case LOGIN_ERROR:
       return {

@@ -49,8 +49,8 @@ class AuthService {
     localStorage.removeItem('id_token');
   }
 
-  getProfile(): {username: string; profile: string} | boolean {
-    return this.getToken() !== '' ? decode(this.getToken()): false;
+  getProfile(): {username: string; role: string, id: number} {
+    return this.getToken() !== '' ? decode(this.getToken()): {username: '', role: '', id: -1};
   }
 
 
@@ -63,7 +63,10 @@ class AuthService {
     if (this.loggedIn()) {
       headers['Authorization'] = 'Bearer ' + this.getToken()
     }
-
+    console.log({
+      headers,
+      ...options
+    });
     return fetch(url, {
       headers,
       ...options

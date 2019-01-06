@@ -1,9 +1,9 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import AuthService from '../../Auth';
 
 function Home() {
   return (
-    <h1>Home</h1>
+    <h1>Home {AuthService.getProfile()['username']}</h1>
   );
 }
 

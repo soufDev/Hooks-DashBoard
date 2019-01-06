@@ -2,8 +2,9 @@ import fs from 'fs';
 import jwt, { verify } from 'jsonwebtoken';
 
 interface Payload {
-  username: string,
-  role: string,
+  username: string;
+  role: string;
+  id: number;
 }
 const publicKey = fs.readFileSync('./public.pem', 'utf8');
 const privateKey = fs.readFileSync('./private.pem', 'utf8');

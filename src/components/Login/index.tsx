@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import { RouteComponentProps } from 'react-router';
 
 import { useDispatch, useMappedState } from 'redux-react-hook';
+import { State } from '../../interface/GlobalState';
 
 interface inputProps {
   error: boolean;
@@ -41,14 +42,14 @@ function checkBeforeSubmit(username: inputProps, password: inputProps): boolean 
   return false;
 }
 
+const mapState = (state: State) => ({
+  error: state.login.error,
+  isLoad: state.login.isLoad,
+});
 // login Component
 function Login(props: RouteComponentProps<{ history?: string }>) {
   const username = useInput('');
   const password = useInput('');
-  const mapState = useCallback((state: any) => ({
-    error: state.login.error,
-    isLoad: state.login.isLoad,
-  }),[]);
   const { error, isLoad } = useMappedState(mapState);
   // create actions
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ function Login(props: RouteComponentProps<{ history?: string }>) {
         <ErrorMessage theme={{ display: password.error ? 'block' : 'none' }}>Please Enter Your password</ErrorMessage>
       </FormInput>
       <FormInput>
-        <Button onClick={handleSubmit}>Log In</Button>
+        <Button onClick={handleSubmit} disabled={isLoad}>Log In</Button>
         <ErrorMessage theme={{ display: error ? 'block' : 'none' }} style={{textAlign: 'center'}}>Please Check your username/password</ErrorMessage>
       </FormInput>  
     </Form>

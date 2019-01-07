@@ -17,7 +17,7 @@ function Edit(props: RouteComponentProps<{ id: string }>) {
   const { id } = props.match.params;
   const { isLoad, error, orders } = useMappedState(mapState);
   const dispatch = useDispatch();
-  const order = orders.filter((order: Order) => order.id = Number(id))[0];  
+  const order = orders.filter((order: Order) => order.id === Number(id))[0];  
   const [status, setStatus] = useState(order && order.status || '');
   
   const handleChange = (event: any) => {

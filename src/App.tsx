@@ -5,7 +5,6 @@ import {
   Route,
  } from 'react-router-dom';
 import ErrorBoundary, { FallbackProps } from 'react-error-boundary';
-import DashBoard from './components/DashBoard';
 import LoginRoute from './components/LoginRoute';
 import Header from './components/Header';
 import ProtectedRoute from './components/ProtectedRoute';

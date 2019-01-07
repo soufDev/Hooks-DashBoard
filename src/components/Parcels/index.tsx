@@ -5,7 +5,7 @@ import { useMappedState, useDispatch } from 'redux-react-hook';
 import { FETCH_ORDERS, FETCH_USERS } from '../../const';
 import { ContentTable, Table, Th } from '../../styledComponents';
 import { Order } from '../../interface/Order';
-import Assignee from '../Assignee/inedex';
+import Assignee from '../Assignee';
 
 const mapState = (state: State) => ({
   orders: state.order.orders,
@@ -29,7 +29,6 @@ function Parcels(props: RouteComponentProps<{ history?: string }> & {id?: number
             <Th>id</Th>
             <Th>Origin</Th>
             <Th>Destination</Th>
-            <Th>Assignee</Th>
             <Th>Status</Th>
             <Th />
           </tr>
@@ -38,7 +37,6 @@ function Parcels(props: RouteComponentProps<{ history?: string }> & {id?: number
               <td>{index + 1}</td>
               <td>{order.origin}</td>
               <td>{order.destination}</td>
-              <td><Assignee id={order.assignee}/></td>
               <td>{order.status}</td>
               <td>
                 <button 

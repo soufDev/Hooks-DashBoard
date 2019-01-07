@@ -8,8 +8,6 @@ export const Input = styled.input`
   background-color: ${props => props.theme.color};
   font-size: 18px;
   margin: 10px;
-  /* border-color: #656565;  */
-
   &:focus {
     outline-color: ${props => props.theme.color};
   }
@@ -56,7 +54,7 @@ export const Form = styled.div`
 `;
 
 export const FormInput = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 `;

@@ -206,7 +206,7 @@
       "origin": "london",
       "destination": "barcelona",
       "status": "ASSIGNED",
-      "assignee": 2,
+      "assignee": 9,
       "delivered_at": 0,
       "pickedup_at": 1546823006320
     },
@@ -255,10 +255,10 @@
       "uuid": "b3fd8271-46aa-4362-a85f-b1bde4fafeab",
       "origin": "london",
       "destination": "barcelona",
-      "status": "ASSIGNED",
+      "status": "PICKED_UP",
       "assignee": 9,
       "delivered_at": 0,
-      "pickedup_at": 1546823248713
+      "pickedup_at": 1546854480617
     },
     {
       "id": 7,
@@ -285,7 +285,7 @@
       "uuid": "95dc31a6-d0d6-4478-bccf-7ddd03521886",
       "origin": "humbourg",
       "destination": "barcelona",
-      "status": "PICKED_UP",
+      "status": "ASSIGNED",
       "assignee": 9,
       "delivered_at": null,
       "pickedup_at": 1546794555

@@ -3,8 +3,8 @@ import { withRouter } from 'react-router';
 import { State } from '../../interface/GlobalState';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 import { updateOrder } from '../../redux/actions/orders';
-import { User } from '../../interface/User';
 import { Order } from '../../interface/Order';
+import { Form, Button, SelectInput, ControlForm } from '../../styledComponents/EditForm';
 
 const mapState = (state: State) => ({
   isLoad: state.user.isLoad,
@@ -14,9 +14,9 @@ const mapState = (state: State) => ({
 });
 function Select(props: any) {
   return (
-    <select name="assignee" id="assignee" value={props.value} onChange={props.onChange}>
+    <SelectInput name="assignee" id="assignee" value={props.value} onChange={props.onChange}>
       {props.users.map((user: any, index:number) => <option key={index} value={user.id}>{user.username}</option>)}
-    </select>
+    </SelectInput>
   )
 };
 
@@ -39,14 +39,14 @@ function Edit(props: any) {
     dispatch(updateOrder(path, data, props.history))
   }
   return (
-    <>
+    <Form>
       <h3>Edit Order</h3>
       <Select users={users} id={id} onChange={handleChange} value={value}/>
-      <>
-        <button onClick={onSubmit}>submit</button>
-        <button onClick={() => props.history.push('/orders')}>cancel</button>
-      </>
-    </>
+      <ControlForm>
+        <Button onClick={onSubmit}>submit</Button>
+        <Button onClick={() => props.history.push('/orders')}>cancel</Button>
+      </ControlForm>
+    </Form>
   )
 }
 

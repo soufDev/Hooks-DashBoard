@@ -5,6 +5,7 @@ export const ContentTable = styled.div`
   
   margin: 0 auto;
   margin-top: 50px;
+  margin-bottom: 50px;
   overflow-x: auto;
   & {
     th, td {

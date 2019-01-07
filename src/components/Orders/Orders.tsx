@@ -6,7 +6,7 @@ import { FETCH_ORDERS, FETCH_USERS } from "../../const";
 import { ContentTable, Table, Th } from "../../styledComponents";
 import { Order } from "../../interface/Order";
 import { State } from "../../interface/GlobalState";
-import Assignee from "../Assignee/inedex";
+import Assignee from "../Assignee";
 
 const mapState = (state: State) => ({
   isLoad: state.order.isLoad,

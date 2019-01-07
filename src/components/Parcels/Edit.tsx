@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
 import { State } from '../../interface/GlobalState';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 import { Order } from '../../interface/Order';
-import { UPDATE_PARCEL } from '../../const';
 import { updateParcel } from '../../redux/actions/orders';
+import { Form, Button } from '../../styledComponents';
+import { SelectInput, ControlForm } from '../../styledComponents/EditForm';
 
 
 const mapState = (state: State) => ({
@@ -47,18 +47,22 @@ function Edit(props: RouteComponentProps<{ id: string }>) {
   }
   if (error) throw error;
   return (
-    <>{isLoad && <h1>Loading...</h1> || <>
-      <h3>Edit Parcel</h3>
-      <select name="status" id="status" value={status} onChange={handleChange}>
-        <option value="PICKED_UP">PICKED_UP</option>
-        <option value="ASSIGNED" >ASSIGNED</option>
-        <option value="DELIVERED">DELIVERED</option>
-      </select>
-      <>
-        <button onClick={onSubmit}>Submit</button>
-        <button><Link to={'/orders'}>Cancel</Link></button>
-      </>
-    </>}</>
+    <>
+      {isLoad && <h1>Loading...</h1> || 
+        <Form>
+           <h3>Edit Parcel</h3>
+          <SelectInput name="status" id="status" value={status} onChange={handleChange}>
+            <option value="PICKED_UP">PICKED_UP</option>
+            <option value="ASSIGNED" >ASSIGNED</option>
+            <option value="DELIVERED">DELIVERED</option>
+          </SelectInput>
+          <ControlForm>
+            <Button onClick={onSubmit}>Submit</Button>
+            <Button onClick={() => props.history.push('/orders')}>Cancel</Button>
+          </ControlForm>
+        </Form>
+      }
+    </>
   )
 }
 

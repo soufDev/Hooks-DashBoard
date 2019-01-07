@@ -19,8 +19,8 @@ function Orders(props: RouteComponentProps<{ history?: string; }>) {
   const { isLoad, error, orders } = useMappedState(mapState);
   const dipatch = useDispatch();
   useEffect(() => {
-    dipatch({ path: 'api/orders', type: FETCH_ORDERS });
-    dipatch({ path: 'api/users', type: FETCH_USERS });
+    dipatch({ path: '/api/orders', type: FETCH_ORDERS });
+    dipatch({ path: '/api/users', type: FETCH_USERS });
   }, []);
   if (error) throw error;
   return (

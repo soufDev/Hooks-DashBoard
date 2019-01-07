@@ -10,6 +10,7 @@ function* fetchUser(action: any) {
     const users = yield call(fetchUsers, path);
     yield put(fetchUsersSuccess(users));
   } catch (e) {
+    console.log({ e });
     yield put(fetchUsersError(e));
   }
 }

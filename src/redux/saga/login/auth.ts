@@ -10,7 +10,7 @@ function* Auth(action:any) {
     const response = yield call(login, username, password);
     if (response.token) {
       yield put(loginSuccess());
-      yield history.push('/home');
+      yield put({ type: 'GO_HOME', history: history.push('/home') });
     } else {
       yield put(loginError({ error: 'there is no token' }));
     }

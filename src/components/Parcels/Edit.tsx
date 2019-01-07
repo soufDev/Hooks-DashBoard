@@ -4,7 +4,7 @@ import { State } from '../../interface/GlobalState';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 import { Order } from '../../interface/Order';
 import { updateParcel } from '../../redux/actions/orders';
-import { Form, Button } from '../../styledComponents';
+import { Form, Button } from '../../styledComponents/EditForm';
 import { SelectInput, ControlForm } from '../../styledComponents/EditForm';
 
 
@@ -32,17 +32,17 @@ function Edit(props: RouteComponentProps<{ id: string }>) {
         delivered_at: 0,
       }
       // dispatch call api with timestamps
-      dispatch(updateParcel(path, data, props.history))
+      dispatch(updateParcel(path, data, props.history.push('/orders')))
     } else if (status === 'DELIVERED') {
       const data = {
         status,
         delivered_at: Date.now(),
       }
-      dispatch(updateParcel(path, data, props.history));
+      dispatch(updateParcel(path, data, props.history.push('/orders')));
     } else {
       const data = { status }
       // dispatch call api without timestamps
-      dispatch(updateParcel(path, data, props.history));
+      dispatch(updateParcel(path, data, props.history.push('/orders')));
     }
   }
   if (error) throw error;

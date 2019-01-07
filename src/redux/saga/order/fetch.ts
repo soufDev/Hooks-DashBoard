@@ -9,6 +9,7 @@ function* fetchOrder(action: any) {
     const orders = yield call(fetchOrders, path);
     yield put(fetchOrdersSuccess(orders));
   } catch (e) {
+    console.log({ e });
     yield put(fetchOrdersError(e));
   }
 }

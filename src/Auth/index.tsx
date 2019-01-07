@@ -1,22 +1,31 @@
 import decode from 'jwt-decode';
-
+import axios, { AxiosInstance } from 'axios';
 class AuthService {
+  private url = 'http://localhost:5000';
+  public client: AxiosInstance;
   constructor() {
+    const headers: any = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    this.client = axios.create({
+      baseURL: 'http://localhost:5000',
+      timeout: 2000,
+      headers,
+    });
+    this.url = 'http://localhost:5000';
     this.fetch = this.fetch.bind(this);
     this.login = this.login.bind(this);
     this.getProfile = this.getProfile.bind(this);
   }
 
   public async login(username: string, password: string) {
-    const response = await this.fetch('/authorize', {
-      method: 'POST',
-      body: JSON.stringify({
+    const response = await this.client.post('/authorize', {
           username,
           password
-      })
     })
-    this.setToken(response.token) 
-    return response;
+    this.setToken(response.data.token);
+    return response.data;
   }
 
   loggedIn() {
@@ -55,20 +64,11 @@ class AuthService {
 
 
   fetch(url: string, options: any) {
-    const headers: any = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-
     if (this.loggedIn()) {
-      headers['Authorization'] = 'Bearer ' + this.getToken()
+      this.client.defaults.headers['Authorization'] = 'Bearer ' + this.getToken();
     }
-    return fetch(url, {
-      headers,
-      ...options
-    }).then(this._checkStatus)
-      .then(response => response.json())
-}
+    return this.client(url, options);
+  }
 
   _checkStatus(response: any) {
     if (response.status >= 200 && response.status < 300) {

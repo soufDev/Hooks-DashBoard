@@ -23,7 +23,7 @@ export const fetchOrdersSuccess = (orders: any[]) => ({
   type: FETCH_ORDERS_SUCCESS,
 });
 
-export const updateParcel = (path: string, data: ParcelUpdate, history: History) => ({
+export const updateParcel = (path: string, data: ParcelUpdate, history: any) => ({
   path,
   data,
   history,
@@ -47,7 +47,7 @@ export const updateParcelError = (error: string) => ({
   type: UPDATE_PARCEL_ERROR,
 })
 
-export const updateOrder = (path: string, data: { assignee: number }, history: History) => ({
+export const updateOrder = (path: string, data: { assignee: number }, history:any) => ({
   path,
   data,
   history,

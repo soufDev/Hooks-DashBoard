@@ -11,9 +11,9 @@ function Assignee({id} : {id: number}) {
   }), [id]);
   const { error, user } = useMappedState(mapState);
   return (
-    <>
+    <div>
       {error && <p>error</p> || <>{user && user.username || 'NOT ASSIGNED'}</>}
-    </>
+    </div>
   )
 }
 

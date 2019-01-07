@@ -26,7 +26,6 @@ function Edit(props: any) {
   const dispatch = useDispatch();
   const order  = orders && orders.filter((order: Order) => order.assignee === Number(id))[0];
   const [value, setValue] = useState<number>(Number(id));
-  console.log({ order, id });
   const handleChange = (e: any) => {
     setValue(Number(e.target.value));
   }
@@ -36,7 +35,7 @@ function Edit(props: any) {
     const data = {
       assignee: value,
     }
-    dispatch(updateOrder(path, data, props.history))
+    dispatch(updateOrder(path, data, props.history.push('/orders')))
   }
   return (
     <Form>

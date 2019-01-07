@@ -14,8 +14,8 @@ const Home = lazy(() => import('./components/Home'));
 const Orders = lazy(() => import('./components/Orders'));
 const ParcelEdit = lazy(() => import('./components/Parcels/Edit'));
 const OrderEdit = lazy(() => import('./components/Orders/Edit'));
-
 const Login = lazy(() => import('./components/Login'));
+
 function MyFallbackComponent({ componentStack, error }: FallbackProps) {
   return (
     <>

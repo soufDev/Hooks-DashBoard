@@ -1,4 +1,4 @@
-import { all } from 'redux-saga/effects';
+import { all, put } from 'redux-saga/effects';
 import { watchAuth } from './login/auth';
 import { watchFetchOrders } from './order/fetch';
 import { watchFetchUsers } from './user/fetch';

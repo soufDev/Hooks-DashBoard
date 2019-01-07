@@ -3,11 +3,14 @@ import { withRouter } from 'react-router';
 import { State } from '../../interface/GlobalState';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 import { updateOrder } from '../../redux/actions/orders';
+import { User } from '../../interface/User';
+import { Order } from '../../interface/Order';
 
 const mapState = (state: State) => ({
   isLoad: state.user.isLoad,
   error: state.user.isLoad,
-  users: state.user.users
+  users: state.user.users,
+  orders: state.order.orders,
 });
 function Select(props: any) {
   return (
@@ -19,17 +22,17 @@ function Select(props: any) {
 
 function Edit(props: any) {
   const { id } = props.match.params;
-  const { users } = useMappedState(mapState);
+  const { users, orders } = useMappedState(mapState);
   const dispatch = useDispatch();
-  
+  const order  = orders && orders.filter((order: Order) => order.assignee === Number(id))[0];
   const [value, setValue] = useState<number>(Number(id));
-  console.log({ value });
+  console.log({ order, id });
   const handleChange = (e: any) => {
     setValue(Number(e.target.value));
   }
   const onSubmit = () => {
     console.log(value);
-    const path = `/api/orders/${value}`;
+    const path = `/api/orders/${order.id}`;
     const data = {
       assignee: value,
     }

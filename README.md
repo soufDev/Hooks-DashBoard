@@ -62,6 +62,8 @@ and the password still the same
         
 for this project I worked with Hooks the proposal API from react I like them so I try to use them each time I can
 
+I worked with react-cache is an unstable package for fetching the data.
+
 I also worked with React-Redux-hooks its a proposal library to handle redux and their dispatch and mappingState.
 
 I would love to work with useRouter to avoid withRouter and these stuff but there is no API for it if there is one, it would be nice if you can share it

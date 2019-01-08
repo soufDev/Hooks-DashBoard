@@ -1,13 +1,10 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from "react-router";
-import { useMappedState, useDispatch } from "redux-react-hook";
-import { useEffect } from "react";
-import { FETCH_ORDERS, FETCH_USERS } from "../../const";
+import { useMappedState } from "redux-react-hook";
 import { ContentTable, Table, Th } from "../../styledComponents";
 import { Order } from "../../interface/Order";
 import { State } from "../../interface/GlobalState";
 import Assignee from "../Assignee";
-import AuthService from '../../Auth';
 
 const mapState = (state: State) => ({
   isLoad: state.order.isLoad,

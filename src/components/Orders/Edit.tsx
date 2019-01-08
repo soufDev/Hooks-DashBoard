@@ -5,11 +5,15 @@ import { useMappedState, useDispatch } from 'redux-react-hook';
 import { updateOrder } from '../../redux/actions/orders';
 import { Order } from '../../interface/Order';
 import { Form, Button, SelectInput, ControlForm } from '../../styledComponents/EditForm';
+import { unstable_createResource as createResource } from 'react-cache';
+import { fetchUsers } from '../../api/users';
+import { User } from '../../interface/User';
+
+const userResource = createResource((path: string) => fetchUsers(path));
 
 const mapState = (state: State) => ({
   isLoad: state.user.isLoad,
   error: state.user.isLoad,
-  users: state.user.users,
   orders: state.order.orders,
 });
 function Select(props: any) {
@@ -22,7 +26,8 @@ function Select(props: any) {
 
 function Edit(props: any) {
   const { id } = props.match.params;
-  const { users, orders } = useMappedState(mapState);
+  const { orders } = useMappedState(mapState);
+  const users = userResource.read('/api/users');
   const dispatch = useDispatch();
   const order  = orders && orders.filter((order: Order) => order.assignee === Number(id))[0];
   const [value, setValue] = useState<number>(Number(id));
@@ -40,7 +45,7 @@ function Edit(props: any) {
   return (
     <Form>
       <h3>Edit Order</h3>
-      <Select users={users} id={id} onChange={handleChange} value={value}/>
+      <Select users={users.filter((user: User) => user.username !== 'admin')} id={id} onChange={handleChange} value={value}/>
       <ControlForm>
         <Button onClick={onSubmit}>submit</Button>
         <Button onClick={() => props.history.push('/orders')}>cancel</Button>

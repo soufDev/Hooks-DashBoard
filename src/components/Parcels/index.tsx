@@ -2,11 +2,8 @@ import React, { useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { State } from '../../interface/GlobalState';
 import { useMappedState, useDispatch } from 'redux-react-hook';
-import { FETCH_ORDERS, FETCH_USERS } from '../../const';
 import { ContentTable, Table, Th } from '../../styledComponents';
 import { Order } from '../../interface/Order';
-import Assignee from '../Assignee';
-import AuthService from '../../Auth';
 
 const mapState = (state: State) => ({
   orders: state.order.orders,
@@ -16,12 +13,6 @@ const mapState = (state: State) => ({
 
 function Parcels(props: RouteComponentProps<{ history?: string }> & {id?: number; username?: string}) {
   const { orders, error , isLoad } = useMappedState(mapState);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    // dispatch({ type: FETCH_ORDERS, path: `/api/orders?assignee=${props.id}`});
-    // dispatch({ type: FETCH_USERS, path: `/api/users`});
-    // return () => AuthService.abortRequest();
-  }, []);
   if (error) throw error;
   return (
     <ContentTable>

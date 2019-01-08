@@ -19,8 +19,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 app.use('/api', isAuthorize, jsonServer.router('./mock-data/db.json'));
 
-require('./mock-data/db.json').users.forEach((u: any) => console.log(u.username.toLocaleLowerCase()));
-
 app.listen(5000, () => {
   console.log('App Launched in 5000 port');
-})
+});

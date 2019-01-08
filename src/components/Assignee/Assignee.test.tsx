@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Assignee from '.';
 import '../../setupTests';
 import initialState from '../../redux/initialeState';
 import configureStore from 'redux-mock-store'
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { StoreContext } from 'redux-react-hook';
 import createSagaMiddleware from 'redux-saga';
 

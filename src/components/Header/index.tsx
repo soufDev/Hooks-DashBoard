@@ -25,7 +25,7 @@ function Header(props: RouteComponentProps<{ history?: string }>) {
   const [focus, setFocus] = useState(false);
   const handleExpendMenu = () => setFocus(!focus);
   const handleMenuClick = (e: { target: { name: string, title: string }}) => {
-    const title = e.target.title.toLowerCase()
+    const title = e.target.title.toLowerCase();
     setItemFocus(title);
     if (title === 'signout') {
       AuthService.logout();

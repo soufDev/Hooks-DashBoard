@@ -1,6 +1,5 @@
-import fs from 'fs';
 import { Request, Response } from 'express';
-import { getToken, verifyToken } from '../JWT';
+import { getToken } from '../JWT';
 
 const searchUser = (username: string, users: any[]) => {
   return users.filter(user => user.username.toLowerCase() === username)[0];

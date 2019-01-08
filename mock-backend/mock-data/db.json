@@ -206,7 +206,7 @@
       "origin": "london",
       "destination": "barcelona",
       "status": "ASSIGNED",
-      "assignee": 9,
+      "assignee": 6,
       "delivered_at": 0,
       "pickedup_at": 1546905758246
     },
@@ -255,10 +255,10 @@
       "uuid": "b3fd8271-46aa-4362-a85f-b1bde4fafeab",
       "origin": "london",
       "destination": "barcelona",
-      "status": "ASSIGNED",
+      "status": "PICKED_UP",
       "assignee": 9,
       "delivered_at": 0,
-      "pickedup_at": 1546854480617
+      "pickedup_at": 1546907625066
     },
     {
       "id": 7,

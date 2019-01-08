@@ -35,7 +35,7 @@ function Edit(props: any) {
     const data = {
       assignee: value,
     }
-    dispatch(updateOrder(path, data, props.history.push('/orders')))
+    dispatch(updateOrder(path, data, props.history))
   }
   return (
     <Form>

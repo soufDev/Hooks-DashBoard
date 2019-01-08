@@ -33,13 +33,13 @@ const orderReducer = (state = initialState.orders, action: any) => {
         isLoad: action.isLoad,
         error: action.error,
       };
-    case UPDATE_PARCEL_SUCCESS:
-      return {
-        ...state,
-        isLoad: action.isLoad,
-        error: null,
-        parcel: action.response,
-      };
+    // case UPDATE_PARCEL_SUCCESS:
+    //   return {
+    //     ...state,
+    //     isLoad: action.isLoad,
+    //     error: null,
+    //     parcel: action.response.data,
+    //   };
     case UPDATE_ORDER_REQUEST:
       return {
         ...state,
@@ -51,12 +51,18 @@ const orderReducer = (state = initialState.orders, action: any) => {
         isLoad: action.isLoad,
         error: action.error,
       };
+    case UPDATE_PARCEL_SUCCESS:
     case UPDATE_ORDER_SUCCESS:
+      const orders = [ 
+        ...state.orders
+          .filter((order: any) => order.id !== action.response.data.id),
+          action.response.data ]
+          .sort((a, b) => a.id - b.id)
       return {
         ...state,
         isLoad: action.isLoad,
         error: null,
-        order: action.response,
+        orders,
       };
     default:
       return state;

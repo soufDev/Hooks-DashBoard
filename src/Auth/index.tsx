@@ -1,7 +1,8 @@
 import decode from 'jwt-decode';
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, Canceler } from 'axios';
+const { CancelToken } = axios;
+let cancel: Canceler;
 class AuthService {
-  private url = 'http://localhost:5000';
   public client: AxiosInstance;
   constructor() {
     const headers: any = {
@@ -13,10 +14,10 @@ class AuthService {
       timeout: 2000,
       headers,
     });
-    this.url = 'http://localhost:5000';
     this.fetch = this.fetch.bind(this);
     this.login = this.login.bind(this);
     this.getProfile = this.getProfile.bind(this);
+    this.abortRequest = this.abortRequest.bind(this);
   }
 
   public async login(username: string, password: string) {
@@ -64,10 +65,18 @@ class AuthService {
 
 
   fetch(url: string, options: any) {
+
     if (this.loggedIn()) {
       this.client.defaults.headers['Authorization'] = 'Bearer ' + this.getToken();
     }
-    return this.client(url, options);
+    return this.client(url, {
+      ...options,
+      cancelToken: new CancelToken((cancellation) => cancel = cancellation),
+    });
+  }
+
+  abortRequest() {
+    return cancel();
   }
 
   _checkStatus(response: any) {

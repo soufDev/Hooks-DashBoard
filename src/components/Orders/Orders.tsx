@@ -7,6 +7,7 @@ import { ContentTable, Table, Th } from "../../styledComponents";
 import { Order } from "../../interface/Order";
 import { State } from "../../interface/GlobalState";
 import Assignee from "../Assignee";
+import AuthService from '../../Auth';
 
 const mapState = (state: State) => ({
   isLoad: state.order.isLoad,
@@ -19,8 +20,9 @@ function Orders(props: RouteComponentProps<{ history?: string; }>) {
   const { isLoad, error, orders } = useMappedState(mapState);
   const dipatch = useDispatch();
   useEffect(() => {
-    dipatch({ path: '/api/orders', type: FETCH_ORDERS });
-    dipatch({ path: '/api/users', type: FETCH_USERS });
+    // dipatch({ path: '/api/orders', type: FETCH_ORDERS });
+    // dipatch({ path: '/api/users', type: FETCH_USERS });
+    // return () => AuthService.abortRequest();
   }, []);
   if (error) throw error;
   return (

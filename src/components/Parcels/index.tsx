@@ -6,6 +6,7 @@ import { FETCH_ORDERS, FETCH_USERS } from '../../const';
 import { ContentTable, Table, Th } from '../../styledComponents';
 import { Order } from '../../interface/Order';
 import Assignee from '../Assignee';
+import AuthService from '../../Auth';
 
 const mapState = (state: State) => ({
   orders: state.order.orders,
@@ -17,8 +18,9 @@ function Parcels(props: RouteComponentProps<{ history?: string }> & {id?: number
   const { orders, error , isLoad } = useMappedState(mapState);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({ type: FETCH_ORDERS, path: `/api/orders?assignee=${props.id}`});
-    dispatch({ type: FETCH_USERS, path: `/api/users`});
+    // dispatch({ type: FETCH_ORDERS, path: `/api/orders?assignee=${props.id}`});
+    // dispatch({ type: FETCH_USERS, path: `/api/users`});
+    // return () => AuthService.abortRequest();
   }, []);
   if (error) throw error;
   return (

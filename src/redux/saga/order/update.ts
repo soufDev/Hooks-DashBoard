@@ -1,7 +1,7 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import { updateParcel as updateParcelApi, updateOrder as updateOrderApi } from '../../../api/order';
 import { updateParcelRequest, updateParcelSuccess, updateParcelError, updateOrderRequest, updateOrderSuccess, updateOrderError } from "../../actions/orders";
-import { UPDATE_PARCEL, UPDATE_ORDER } from "../../../const";
+import { UPDATE_PARCEL, UPDATE_ORDER, FETCH_ORDERS, FETCH_USERS } from "../../../const";
 import { History, createBrowserHistory } from 'history';
 
 function* updateParcel(action: any) {
@@ -10,7 +10,7 @@ function* updateParcel(action: any) {
   try {
     const response = yield call(updateParcelApi, path, data);
     yield put(updateParcelSuccess(response));
-    yield history;
+    yield history.push('/orders');
   } catch (error) {
     yield put(updateParcelError(error));
   }
@@ -27,7 +27,7 @@ function* updateOrder(action: any) {
   try {
     const response = yield call(updateOrderApi, path, data);
     yield put(updateOrderSuccess(response));
-    yield history;
+    yield history.push('/orders');
   } catch (error) {
     yield put(updateOrderError(error));
   }

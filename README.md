@@ -68,5 +68,7 @@ I also worked with React-Redux-hooks its a proposal library to handle redux and 
 
 I would love to work with useRouter to avoid withRouter and these stuff but there is no API for it if there is one, it would be nice if you can share it
  
-the refresh does not work so we have an enhancement to add like persist the store and then every time we refresh we will find our data with the last change
+the refresh does not work so we have an enhancement to add like persist the store and then every time we refresh we will find our data with the last change 
+
+actualy the refresh is working because I added the redux-persist Library it took me about 10min to added it.
 

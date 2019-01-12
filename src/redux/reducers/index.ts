@@ -5,14 +5,18 @@ import user from './user';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-const persistConfig = {
+const persistOrderConfig = {
   key: 'order',
+  storage,
+};
+const persistUserConfig = {
+  key: 'user',
   storage,
 };
 const reducers = combineReducers({
   login,
-  order: persistReducer(persistConfig, order),
-  user: persistReducer(persistConfig, user),
+  order: persistReducer(persistOrderConfig, order),
+  user: persistReducer(persistUserConfig, user),
 });
 
 export default reducers;

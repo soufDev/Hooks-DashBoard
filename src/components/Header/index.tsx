@@ -29,6 +29,8 @@ function Header(props: RouteComponentProps<{ history?: string }>) {
     setItemFocus(title);
     if (title === 'signout') {
       AuthService.logout();
+      localStorage.removeItem('persist:order');
+      localStorage.removeItem('persist:user');
       setItemFocus('home');
       props.history.push('/');
     } else {

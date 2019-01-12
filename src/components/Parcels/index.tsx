@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { State } from '../../interface/GlobalState';
-import { useMappedState, useDispatch } from 'redux-react-hook';
+import { useMappedState } from 'redux-react-hook';
 import { ContentTable, Table, Th } from '../../styledComponents';
 import { Order } from '../../interface/Order';
 

@@ -25,25 +25,28 @@ function Edit(props: RouteComponentProps<{ id: string }>) {
   }
   const onSubmit = () => {
     const path = `/api/orders/${id}`;
+    let data = {};
     if (status === 'PICKED_UP') {
-      const data = {
+      data = {
         status,
         pickedup_at: Date.now(),
-        delivered_at: 0,
+        delivered_at: null,
       }
-      // dispatch call api with timestamps
-      dispatch(updateParcel(path, data, props.history))
     } else if (status === 'DELIVERED') {
-      const data = {
+      data = {
         status,
         delivered_at: Date.now(),
+        pickedup_at: null,
       }
-      dispatch(updateParcel(path, data, props.history));
     } else {
-      const data = { status }
-      // dispatch call api without timestamps
-      dispatch(updateParcel(path, data, props.history));
+      data = { 
+        status,
+        delivered_at: null,
+        pickedup_at: null,
+      }
     }
+    // dispatch call api without timestamps
+    dispatch(updateParcel(path, data, props.history));
   }
   if (error) throw error;
   return (

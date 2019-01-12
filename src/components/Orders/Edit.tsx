@@ -35,7 +35,6 @@ function Edit(props: any) {
     setValue(Number(e.target.value));
   }
   const onSubmit = () => {
-    console.log(value);
     const path = `/api/orders/${order.id}`;
     const data = {
       assignee: value,

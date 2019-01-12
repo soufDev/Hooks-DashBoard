@@ -70,5 +70,5 @@ I would love to work with useRouter to avoid withRouter and these stuff but ther
  
 the refresh does not work so we have an enhancement to add like persist the store and then every time we refresh we will find our data with the last change 
 
-actualy the refresh is working because I added the redux-persist Library it took me about 10min to added it.
+actualy the refresh is working because I added the redux-persist Library it took me about 10min to add it.
 

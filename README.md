@@ -1,4 +1,4 @@
-## Saloodo Challenge
+## Hooks Dashboard
 
 using React with hooks, redux, redux-saga, redux-react-hook, styled components
 

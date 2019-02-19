@@ -72,7 +72,8 @@ function Login(props: Props) {
           // }, history: props.history});
           props.login && props.login(({
             username: username.value,
-            password: password.value
+            password: password.value,
+            history: props.history,
           }));
         } catch (e) {
           console.log({ e });

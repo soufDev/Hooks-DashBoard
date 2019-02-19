@@ -5,6 +5,14 @@ import { RouteComponentProps } from 'react-router';
 
 import { useDispatch, useMappedState } from 'redux-react-hook';
 import { State } from '../../interface/GlobalState';
+import { connect } from 'react-redux';
+import { Dispatch } from '../../redux';
+
+interface Props extends RouteComponentProps<{ history?: string }> {
+  login: ({ username, password }: { username: string, password: string }) => void;
+  error?: string;
+  isLoad?: boolean;
+}
 
 interface inputProps {
   error: boolean;
@@ -47,20 +55,25 @@ const mapState = (state: State) => ({
   isLoad: state.login.isLoad,
 });
 // login Component
-function Login(props: RouteComponentProps<{ history?: string }>) {
+function Login(props: Props) {
   const username = useInput('');
   const password = useInput('');
-  const { error, isLoad } = useMappedState(mapState);
+  const { error, isLoad } = props;
   // create actions
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // console.log(dispatch({ type: 'login' }));
   const handleSubmit = useCallback(
     () => {
       if(checkBeforeSubmit(username, password)) {
         try {
-          dispatch({ type: 'LOGIN_REQUEST', data: {
+          // dispatch({ type: 'LOGIN_REQUEST', data: {
+          //   username: username.value,
+          //   password: password.value
+          // }, history: props.history});
+          props.login && props.login(({
             username: username.value,
             password: password.value
-          }, history: props.history});
+          }));
         } catch (e) {
           console.log({ e });
         }
@@ -85,4 +98,13 @@ function Login(props: RouteComponentProps<{ history?: string }>) {
   );
 }
 
-export default Login;
+const mapStateToProps = (state: State) => ({
+  error: state.login.error,
+  isLoad: state.login.isLoad,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  login: ({ username, password }: { username: string, password: string }) => dispatch.login.login({ username, password }),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
